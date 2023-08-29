@@ -58,13 +58,15 @@ def trans(request):
         # Final Output:
         # print(npra)
         wordDic = {}
-        
-        for i in npra:
-            english_word = i
-            gujarati_meaning = get_gujarati_meaning(english_word, lang)
-            # print(f"{english_word}: {gujarati_meaning}")
-            wordDic[english_word] = gujarati_meaning
+        try:
 
+            for i in npra:
+                english_word = i
+                gujarati_meaning = get_gujarati_meaning(english_word, lang)
+                # print(f"{english_word}: {gujarati_meaning}")
+                wordDic[english_word] = gujarati_meaning
+        except:
+                wordDic = {"Error ":"404 Not Found, network error."}
         return render(request, "Transpara/index.html", {"praText": ptext, "wd" : wordDic})
 
     return render(request, "Transpara/index.html")

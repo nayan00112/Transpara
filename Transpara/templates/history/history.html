@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+
+</head>
+
+<body>
+    <div class="cont">
+        <ul class="navbar">
+            <li class="active"><a href="/">Home</a></li>
+            <li class=""><a href="/about">About</a></li>
+            <li class=""><a href="/account/login">Logout</a></li>
+        </ul>
+        <div>
+            {% if ud %}
+            {% for d in ud %}
+            {{d.dateandtime}}
+            <br>
+            {{d.user_data}} 
+            {% comment %} now, data is comming but proper formating stil reminang. {% endcomment %}
+            <hr>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

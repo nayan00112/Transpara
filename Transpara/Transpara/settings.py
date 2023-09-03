@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'Translate',
     'Blogs',
+    'account',
+    'HistoryDisp',
 ]
 
 MIDDLEWARE = [

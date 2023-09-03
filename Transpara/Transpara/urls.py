@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Blogs.urls')),
     path('', include('Translate.urls')),
-
+    path('account/', include('account.urls')),
+    path('history/', include('HistoryDisp.urls')),
 ]

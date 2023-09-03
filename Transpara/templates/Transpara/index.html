@@ -18,12 +18,17 @@
 <body>
     <div class="cont">
         <ul class="navbar">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li class=""><a href="/about">About</a></li>
             <li class=""><a href="/contact">Contact</a></li>
-            <li class=""><a href="#">Sign up</a></li>
-            <li class=""><a href="#">Sign in</a></li>
-            <li class=""><a href="#">Sign out</a></li>
+            {% if user.is_authenticated %}
+            <li class="" style="border-color: rgb(0, 177, 0);"><a href="#">Hello {{user.first_name}}</a></li>
+            <li class=""><a href="history/history">My History</a></li>
+            <li class=""><a href="account/login">Logout</a></li>
+            {% else %}
+            <li class=""><a href="account/register">Register</a></li>
+            <li class=""><a href="account/login">Login</a></li>
+            {% endif %}
         </ul>
         <div id="hed">
             <h1 class="heading">Transpara</h1>
@@ -49,6 +54,9 @@
                     <option value="es">Spanish</option>
                     <option value="ja">Japanese</option>
                 </select>
+                {% if user.is_authenticated %}
+                <input type="text" name="{{user.username}}" id="{{user.username}}" hidden>
+                {% endif %}
                 <button type="submit" value="submit" id="subm">Submit</button>
             </form>
         </div>

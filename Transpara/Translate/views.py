@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from googletrans import Translator
 from PyDictionary import PyDictionary
 import json
+from datetime import datetime
+from .models import UserData
 
 # Create your views here.
 
@@ -80,7 +82,8 @@ def trans(request):
                 meaning = get_meaning(english_word, lang)
                 # print(f"{english_word}: {gujarati_meaning}")
                 wordDic[english_word] = meaning
-                wordMin[english_word + ": " + meaning] = dictionary.meaning(english_word)
+                wordMin[english_word + ": " +
+                        meaning] = dictionary.meaning(english_word)
 
         except:
             wordDic = {"Error ": "404 Not Found, network error."}
@@ -105,7 +108,28 @@ def trans(request):
             if lang == l:
                 textLeng = lenguagesList[l]
                 break
-        return render(request, "Transpara/index.html", {"praText": ptext, "wd": wordDic, "wdm":wordMin, "l1": textLeng})
+
+        # if user is authencated then save data to the database. (including pragraph)
+        if request.user.is_authenticated:
+            # plane is first, convert data to the json formate and store on db.
+            uname = request.user
+            # day month year Hour Minute Second
+            dateandtime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+            userJson = {
+                "pragraph": ptext,
+                "words_language": lenguagesList[lang],
+                "words": wordDic,
+            }
+
+            jstr = json.dumps(userJson)
+            jsondata = json.loads(jstr)
+
+            ud = UserData(user_name=uname, user_data=jsondata,
+                          dateandtime=dateandtime)
+            ud.save()
+
+        return render(request, "Transpara/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng})
         # return render(request, "Transpara/index.html", {"praText": ptext, "wd": jsondata1, "l1": textLeng})
 
     return render(request, "Transpara/index.html")

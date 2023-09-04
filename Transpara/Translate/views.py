@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.http import Http404
 from googletrans import Translator
 from PyDictionary import PyDictionary
+from django.contrib import messages
 import json
 from datetime import datetime
 from .models import UserData
@@ -86,7 +87,7 @@ def trans(request):
                         meaning] = dictionary.meaning(english_word)
 
         except:
-            wordDic = {"Error ": "404 Not Found, network error."}
+            messages.error(request, 'Network error')
 
         lenguagesList = {
             "hi": "Hindi",
@@ -129,7 +130,6 @@ def trans(request):
                           dateandtime=dateandtime)
             ud.save()
 
-        return render(request, "Transpara/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng})
-        # return render(request, "Transpara/index.html", {"praText": ptext, "wd": jsondata1, "l1": textLeng})
+        return render(request, "Translate/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng})
 
-    return render(request, "Transpara/index.html")
+    return render(request, "Translate/index.html")

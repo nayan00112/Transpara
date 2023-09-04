@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .forms import RegisterForm, Login
+from django.http import Http404, HttpResponse
+
 # Create your views here.
 
 
@@ -50,3 +52,43 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def myprofile(request):
+    if request.user.is_authenticated:
+        print(request.user)
+        return render(request, "profile/myprofile.html")
+    else:
+        return Http404
+
+
+def editprofile(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            uid = request.POST['user_id']
+            fname = request.POST['firstname']
+            lname = request.POST['lastname']
+            uname = request.POST['uname']
+            email = request.POST['email']
+            cpassword = request.POST['cpassword']
+            npassword = request.POST['npassword']
+
+            user = auth.authenticate(username=request.user, password=cpassword)
+            if user is not None:
+                user = User.objects.get(username=request.user)
+                id=uid,
+                user.username=uname
+                user.first_name=fname
+                user.last_name=lname
+                user.email=email
+                user.set_password(npassword)
+                user.save()
+                auth.logout(request)
+                messages.info(request, "updated successfully and logout.")
+            else:
+                messages.info(request, "Invalid credential")
+
+        print(request.user)
+        return render(request, "profile/editprofile.html")
+    else:
+        return HttpResponse(request, "Not Found")

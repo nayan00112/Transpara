@@ -12,25 +12,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'home.css'%}">
 
+    <script src={% static 'historypragraph.js' %}>
+        
+    </script>
+    <style>
+       
+    </style>
 </head>
 
-<body>
+<body onload="disp()">
     <div class="cont">
         <ul class="navbar">
             <li class="active"><a href="/">Home</a></li>
             <li class=""><a href="/about">About</a></li>
+            <li class=""><a href="/contact">Contact</a></li>
+            <li class="" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello {{user.first_name}}</a></li>
             <li class=""><a href="/account/login">Logout</a></li>
         </ul>
+        <hr>
         <div>
+            <h1 id="hist">History</h1>
             {% if ud %}
             {% for d in ud %}
-            {{d.dateandtime}}
+            <b>Date and Time: </b>{{d.dateandtime}}
             <br>
-            {{d.user_data}} 
-            {% comment %} now, data is comming but proper formating stil reminang. {% endcomment %}
+            <p>
+                {{d.user_data}}
+                {% comment %} now, data is comming but proper formating stil reminang. {% endcomment %}
+            </p>
             <hr>
             {% endfor %}
             {% endif %}
+
         </div>
     </div>
 </body>

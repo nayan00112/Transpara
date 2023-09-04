@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transpara | My Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+
+</head>
+
+<body>
+    <div class="cont">
+        <ul class="navbar">
+            <li class="active"><a href="/">Home</a></li>
+            <li class=""><a href="/about">About</a></li>
+            <li class=""><a href="/history/history">My History</a></li>
+            <li class=""><a href="/account/editprofile">Edit Profile</a></li>
+            <li class=""><a href="/account/login">Logout</a></li>
+        </ul>
+
+        <div>
+            <table>
+                <tr>
+                    <td>Unique ID</td>
+                    <td>:</td>
+                    <td>{{user.id}}</td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>:</td>
+                    <td>{{user.first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>:</td>
+                    <td>{{user.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>:</td>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td>:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+</body>
+
+</html>

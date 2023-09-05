@@ -12,7 +12,21 @@
 
 <body>
     <div class="cont">
-        <h1>About us</h1>
+        <ul class="navbar">
+            <li class=""><a href="/">Home</a></li>
+            <li class="{% if active_about %}active{% endif %}"><a href="/about">About</a></li>
+            <li class="{% if active_contact %}active{% endif %}"><a href="/contact">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li class="{% if active_myprofile %}active{% endif %}" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello
+                    {{user.first_name}}</a></li>
+            <li class="{% if active_editprofile %}active{% endif %}"><a href="history/history">My History</a></li>
+            <li class="{% if active %}active{% endif %}"><a href="account/logout">Logout</a></li>
+            {% else %}
+            <li class="{% if active_register %}active{% endif %}"><a href="/account/register">Register</a></li>
+            <li class="{% if active_login %}active{% endif %}"><a href="/account/login">Login</a></li>
+            {% endif %}
+        </ul>
+        <h1 class = "heading">About us</h1>
         <p>Hello all </p>
         <p>Welcome to Transpara, Expand yout Vocabulary.</p>
         <p>

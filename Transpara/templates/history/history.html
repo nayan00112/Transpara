@@ -23,7 +23,7 @@
 <body onload="disp()">
     <div class="cont">
         <ul class="navbar">
-            <li class="active"><a href="/">Home</a></li>
+            <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/about">About</a></li>
             <li class=""><a href="/contact">Contact</a></li>
             <li class="" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello {{user.first_name}}</a></li>
@@ -31,7 +31,7 @@
         </ul>
         <hr>
         <div>
-            <h1 id="hist">History</h1>
+            <h1 class="heading2">History</h1>
             {% if ud %}
             {% for d in ud %}
             <b>Date and Time: </b>{{d.dateandtime}}

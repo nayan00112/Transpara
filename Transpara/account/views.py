@@ -10,11 +10,11 @@ from django.http import Http404, HttpResponse
 def register(request):
     fd = RegisterForm()
     if request.method == "POST":
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        uname = request.POST['uname']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+        fname = request.POST['first_name']
+        lname = request.POST['last_name']
+        uname = request.POST['username']
+        password1 = request.POST['create_password1']
+        password2 = request.POST['conform_password2']
         email = request.POST['email']
 
         if password1 == password2:
@@ -30,7 +30,7 @@ def register(request):
         else:
             messages.info(request, "Password is not matching...")
 
-    return render(request, "account/register.html", {"fd": fd})
+    return render(request, "account/register.html", {"fd": fd, "active_register":"active"})
 
 
 def login(request):
@@ -46,7 +46,7 @@ def login(request):
             messages.info(request, "Invalid credentials")
             return redirect("login")
 
-    return render(request, "account/login.html", {"fd": fd})
+    return render(request, "account/login.html", {"fd": fd, "active_login":"active"})
 
 
 def logout(request):
@@ -56,8 +56,8 @@ def logout(request):
 
 def myprofile(request):
     if request.user.is_authenticated:
-        print(request.user)
-        return render(request, "profile/myprofile.html")
+        # print(request.user)
+        return render(request, "profile/myprofile.html", {"active_myprofile":"active"})
     else:
         return Http404
 
@@ -74,21 +74,27 @@ def editprofile(request):
             npassword = request.POST['npassword']
 
             user = auth.authenticate(username=request.user, password=cpassword)
+            print(user)
             if user is not None:
-                user = User.objects.get(username=request.user)
-                id=uid,
-                user.username=uname
-                user.first_name=fname
-                user.last_name=lname
-                user.email=email
-                user.set_password(npassword)
-                user.save()
-                auth.logout(request)
-                messages.info(request, "updated successfully and logout.")
+
+                if User.objects.filter(username=uname).exists() and str(User.objects.filter(username=uname).first().id) != str(request.user.id):
+                    print(User.objects.filter(username=uname).exists() , str(User.objects.filter(username=uname).first().id) , str(request.user.id))
+                    messages.info(request, "Username is already taken.")
+                elif User.objects.filter(email=email).exists() and str(User.objects.filter(email=email).first().id) != str(request.user.id):
+                    print(User.objects.filter(email=email).exists() , User.objects.filter(email=email).first().id , str(request.user.id))
+                    messages.info(request, "Email is already taken.")
+                else:
+                    user.username = uname
+                    user.first_name = fname
+                    user.last_name = lname
+                    user.email = email
+                    user.set_password(npassword)
+                    user.save()
+                    auth.logout(request)
+                    messages.info(request, "updated successfully and logout.")
             else:
                 messages.info(request, "Invalid credential")
 
-        print(request.user)
-        return render(request, "profile/editprofile.html")
+        return render(request, "profile/editprofile.html", {"active_editprofile":"active"})
     else:
         return HttpResponse(request, "Not Found")

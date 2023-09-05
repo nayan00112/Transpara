@@ -7,8 +7,8 @@ from django.http import Http404
 def history(request):
     if request.user.is_authenticated:
         try:
-            ud = UserData.objects.filter(user_name = request.user)
-            return render(request, "history/history.html", {"ud": ud})
+            ud = UserData.objects.filter(user_id = request.user.id)
+            return render(request, "history/history.html", {"ud": ud, "active_history":"active"})
         except:
             return Http404
     else:

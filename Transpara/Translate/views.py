@@ -113,7 +113,8 @@ def trans(request):
         # if user is authencated then save data to the database. (including pragraph)
         if request.user.is_authenticated:
             # plane is first, convert data to the json formate and store on db.
-            uname = request.user
+            uid = request.user.id
+            print(uid)
             # day month year Hour Minute Second
             dateandtime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
@@ -126,10 +127,10 @@ def trans(request):
             jstr = json.dumps(userJson)
             jsondata = json.loads(jstr)
 
-            ud = UserData(user_name=uname, user_data=jsondata,
+            ud = UserData(user_id=uid, user_data=jsondata,
                           dateandtime=dateandtime)
             ud.save()
 
-        return render(request, "Translate/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng})
+        return render(request, "Translate/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng, "active_home":"active"})
 
-    return render(request, "Translate/index.html")
+    return render(request, "Translate/index.html", {"active_home":"active"})

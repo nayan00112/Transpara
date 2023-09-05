@@ -18,17 +18,18 @@
 <body>
     <div class="cont">
         <ul class="navbar">
-            <li class="active"><a href="/">Home</a></li>
-            <li class=""><a href="/about">About</a></li>
-            <li class=""><a href="/contact">Contact</a></li>
+            <li class="{% if active_home %}active{% endif %}"><a href="/">Home</a></li>
+            <li class="{% if active_about %}active{% endif %}"><a href="/about">About</a></li>
+            <li class="{% if active_contact %}active{% endif %}"><a href="/contact">Contact</a></li>
             {% if user.is_authenticated %}
-            <li class="" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello
+            <li class="{% if active_myprofile %}active{% endif %}" style="border-color: rgb(0, 177, 0);"><a
+                    href="/account/myprofile">Hello
                     {{user.first_name}}</a></li>
-            <li class=""><a href="history/history">My History</a></li>
-            <li class=""><a href="account/logout">Logout</a></li>
+            <li class="{% if active_editprofile %}active{% endif %}"><a href="history/history">My History</a></li>
+            <li class="{% if active %}active{% endif %}"><a href="account/logout">Logout</a></li>
             {% else %}
-            <li class=""><a href="/account/register">Register</a></li>
-            <li class=""><a href="/account/login">Login</a></li>
+            <li class="{% if active_register %}active{% endif %}"><a href="/account/register">Register</a></li>
+            <li class="{% if active_login %}active{% endif %}"><a href="/account/login">Login</a></li>
             {% endif %}
         </ul>
         <div id="hed">
@@ -64,9 +65,9 @@
         <div>
             {% if messages %}
             <h1 style="color: red;">
-            {% for n in messages %}
-            {{n}}
-            {% endfor %}
+                {% for n in messages %}
+                {{n}}
+                {% endfor %}
             </h1>
             {% endif %}
 

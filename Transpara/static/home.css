@@ -12,6 +12,17 @@ body {
     color: rgb(64, 64, 255);
 }
 
+.heading2 {
+    /* font-size: 3rem; */
+    color: black;
+    font-weight: bolder;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    color: rgb(64, 64, 255);
+    margin: 20px 0em;
+}
+
 .lite {
     font-size: 1rem;
     color: rgb(150, 150, 150);
@@ -21,10 +32,7 @@ body {
     margin-top: 1em;
 }
 
-.cont {
-    width: 55%;
-    margin: auto;
-}
+
 
 label {
     display: block;
@@ -37,14 +45,14 @@ label {
 #butt1,
 #butt2 {
     display: block;
-    width: 30%;
     height: 3em;
     border: none;
     margin-top: 1em;
     margin-bottom: 1em;
     background-color: rgb(64, 64, 255);
     color: white;
-
+    width: 200px;
+    border-radius: 6px;
 }
 
 #subm:hover,
@@ -98,8 +106,7 @@ li.active {
 }
 
 .navbar li:hover {
-    color: white;
-    background-color: rgba(0, 0, 255, 0.426);
+    background-color: rgba(0, 0, 255, 0.226);
 }
 
 select {
@@ -108,4 +115,28 @@ select {
 
 input {
     width: 100%;
+}
+
+
+.cont {
+    width: 75%;
+    margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+    /* For screens with a minimum width of 768px (tablets and desktops) */
+    .cont {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* For screens with a maximum width of 767px (phones) */
+    .cont {
+        width: 98%;
+    }
+
+    .navbar li {
+        width:40%;
+    }
 }

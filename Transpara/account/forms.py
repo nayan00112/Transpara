@@ -6,9 +6,9 @@ class RegisterForm(forms.Form):
     last_name = forms.CharField(max_length=10, required=True)
     email = forms.EmailField(required=True)
     username = forms.CharField(max_length=10, required=True)
-    create_password1 = forms.CharField(
+    create_password = forms.CharField(
         max_length=10, required=True, widget=forms.PasswordInput)
-    conform_password2 = forms.CharField(
+    conform_password = forms.CharField(
         max_length=10, required=True, widget=forms.PasswordInput)
 
 

@@ -13,8 +13,8 @@ def register(request):
         fname = request.POST['first_name']
         lname = request.POST['last_name']
         uname = request.POST['username']
-        password1 = request.POST['create_password1']
-        password2 = request.POST['conform_password2']
+        password1 = request.POST['create_password']
+        password2 = request.POST['conform_password']
         email = request.POST['email']
 
         if password1 == password2:
@@ -26,7 +26,7 @@ def register(request):
                 user = User.objects.create_user(
                     username=uname, first_name=fname, last_name=lname, email=email, password=password1)
                 user.save()
-                messages.info(request, "User is created.")
+                messages.info(request, "User is created. Now login required.")
         else:
             messages.info(request, "Password is not matching...")
 

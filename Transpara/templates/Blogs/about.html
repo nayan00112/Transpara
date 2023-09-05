@@ -8,6 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transpara | About</title>
     <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap" rel="stylesheet">    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body p {
+            font-family: 'Quicksand', sans-serif;
+            size: 21px;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,7 +30,8 @@
             <li class="{% if active_about %}active{% endif %}"><a href="/about">About</a></li>
             <li class="{% if active_contact %}active{% endif %}"><a href="/contact">Contact</a></li>
             {% if user.is_authenticated %}
-            <li class="{% if active_myprofile %}active{% endif %}" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello
+            <li class="{% if active_myprofile %}active{% endif %}" style="border-color: rgb(0, 177, 0);"><a
+                    href="/account/myprofile">Hello
                     {{user.first_name}}</a></li>
             <li class="{% if active_editprofile %}active{% endif %}"><a href="history/history">My History</a></li>
             <li class="{% if active %}active{% endif %}"><a href="account/logout">Logout</a></li>
@@ -26,11 +40,23 @@
             <li class="{% if active_login %}active{% endif %}"><a href="/account/login">Login</a></li>
             {% endif %}
         </ul>
-        <h1 class = "heading">About us</h1>
+        <h1 class="heading">About us</h1>
         <p>Hello all </p>
         <p>Welcome to Transpara, Expand yout Vocabulary.</p>
         <p>
             This is a project which help to students in their studies.
+        </p>
+        <p>
+            <b>What is Transpara?</b><br>
+            Transpara is the services that provides to user who want to increse his/her Vocabulary.
+        </p>
+        <p>
+            <b>Why login?</b><br>
+            Login must required for storing data history. <br>
+            User can access their data anytime.
+        </p>
+        <p>
+            <b></b>
         </p>
     </div>
 </body>

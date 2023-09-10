@@ -143,6 +143,25 @@ input {
     }
 }
 
+@media screen and (max-width: 467px) {
+    /* Small phone */
+    /* For screens with a maximum width of 767px (phones) */
+    .cont {
+        width: 100%;
+    }
+
+    .navbar li {
+        width: 45%;
+    }
+    .heading{
+        font-size: 2.5em;
+        padding-top: 10px;
+    }
+    .lite{
+        font-size: 0.9em;
+    }
+}
+
 #hed {
     display: flex;
     padding: 12px 10px 10px  0px;

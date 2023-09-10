@@ -9,12 +9,13 @@
     <title>Transpara Expand yout Vocabulary</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap" rel="stylesheet">
     <script src="{% static 'printJS.js' %}">
     </script>
     <noscript>Your browser does not support JavaScript.</noscript>
     <style>
-        #divmeaning, #PragraphText{
+        #divmeaning,
+        #PragraphText {
             font-family: 'Quicksand', sans-serif;
             padding: 5px;
         }
@@ -40,9 +41,17 @@
             {% endif %}
         </ul>
         <div id="hed">
-            <h1 class="heading">Transpara</h1>
-            <h3 class="lite">Expand your vocabulary</h3>
+            <div class="child">
+                <object title="Transpara logo" type="image/svg+xml" data="{% static 'logo/TransparaLogo.svg' %}"
+                    height="100px">
+                </object class="child">
+            </div>
+            <div>
+                <h1 class="heading">Transpara</h1>
+                <h3 class="lite">Expand your vocabulary</h3>
+            </div>
         </div>
+        <!-- </div> -->
         <div>
             <form method="post" name="form1">
                 {% csrf_token %}
@@ -147,7 +156,8 @@
                 {%endif%}
             </div>
             <div>
-                <footer style='margin-top:2em; color:rgb(51, 51, 51); font-size: small;' id="footr">&#169;Copyright 2023
+                <footer class="footer" id="fr">&#169;Copyright
+                    2023
                     by
                     Transpara.</footer>
             </div>

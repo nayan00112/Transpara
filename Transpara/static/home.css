@@ -80,6 +80,7 @@ textarea {
 
 .navbar {
     padding: 0px;
+    margin: 0px;
 }
 
 .navbar li {
@@ -88,7 +89,6 @@ textarea {
     padding: 10px 2em;
     border-bottom: 3px solid blue;
     border-radius: 10px;
-
     display: inline-block;
     margin-top: 2px;
     box-sizing: border-box;
@@ -124,6 +124,7 @@ input {
 }
 
 @media screen and (min-width: 768px) {
+
     /* For screens with a minimum width of 768px (tablets and desktops) */
     .cont {
         width: 65%;
@@ -131,12 +132,26 @@ input {
 }
 
 @media screen and (max-width: 767px) {
+
     /* For screens with a maximum width of 767px (phones) */
     .cont {
         width: 98%;
     }
 
     .navbar li {
-        width:40%;
+        width: 46%;
     }
+}
+
+#hed {
+    display: flex;
+    padding: 12px 10px 10px  0px;
+}
+.child{
+    flex-wrap: wrap;
+}
+.footer {
+    margin-top: 2em;
+    color: rgb(51, 51, 51);
+    font-size: small;
 }

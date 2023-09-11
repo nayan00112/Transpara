@@ -1,0 +1,14 @@
+.red{
+    color: red;
+}
+
+.deleteBut{
+    background-color: rgba(255, 0, 0, 0.696);
+    padding: 8px 30px;
+    border: 0px;
+    color: white;
+    border-radius: 9px;
+}
+.deleteBut:hover{
+    background-color: rgb(255, 0, 0);
+}

@@ -11,13 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'home.css'%}">
-
+    <link rel="stylesheet" href="{% static 'cssforHistory.css'%}">
     <script src={% static 'historypragraph.js' %}>
-    <noscript>Your browser does not support JavaScript.</noscript>
+        <noscript>Your browser does not support JavaScript.</noscript>
     </script>
-    <style>
-       
-    </style>
 </head>
 
 <body onload="disp()">
@@ -26,7 +23,8 @@
             <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/about">About</a></li>
             <li class=""><a href="/contact">Contact</a></li>
-            <li class="" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello {{user.first_name}}</a></li>
+            <li class="" style="border-color: rgb(0, 177, 0);"><a href="/account/myprofile">Hello
+                    {{user.first_name}}</a></li>
             <li class=""><a href="/account/login">Logout</a></li>
         </ul>
         <hr>
@@ -40,8 +38,16 @@
                 {{d.user_data}}
                 {% comment %} now, data is comming but proper formating stil reminang. {% endcomment %}
             </p>
+            <form action="/history/delete_histry" method="post" onclick="return confirm('Do you want to submit?')">
+                {% csrf_token %}
+                <input type="text" name="ID_Delete" value="{{d.id}}" hidden>
+                <button type="submit" class="deleteBut">Delete</button>
+            </form>
             <hr>
             {% endfor %}
+            {% else %}
+            <hr>
+            <h2 class="red">Empty!</h2>
             {% endif %}
 
         </div>

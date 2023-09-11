@@ -5,7 +5,7 @@ function disp() {
     //     document.getElementById('hist').innerText = (document.getElementById('hist').innerText + " EMPTY ")
     // }
     for (let l = 0; l < c.length; l++) {
-        let d = JSON.parse(c[l].innerText.replaceAll("'", '"')) // make data in proper formate.
+        let d = JSON.parse(c[l].innerText)
         // creating empty text.
         var text=""
         for (let j in d["words"])

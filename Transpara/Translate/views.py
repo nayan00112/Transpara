@@ -119,7 +119,7 @@ def trans(request):
             dateandtime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
             userJson = {
-                "pragraph": ptext,
+                "pragraph": ptext.replace('"', '&#8243;'),
                 "words_language": lenguagesList[lang],
                 "words": wordDic,
             }

@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'home.css'%}">
     <link rel="stylesheet" href="{% static 'cssforHistory.css'%}">
-    <script src={% static 'historypragraph.js' %}>
+    <script src="{% static 'historypragraph.js' %}">
         <noscript>Your browser does not support JavaScript.</noscript>
     </script>
 </head>
@@ -38,7 +38,7 @@
                 {{d.user_data}}
                 {% comment %} now, data is comming but proper formating stil reminang. {% endcomment %}
             </p>
-            <form action="/history/delete_histry" method="post" onclick="return confirm('Do you want to submit?')">
+            <form action="/history/delete_histry" method="post" onclick="return confirm('Sure to delete?')">
                 {% csrf_token %}
                 <input type="text" name="ID_Delete" value="{{d.id}}" hidden>
                 <button type="submit" class="deleteBut">Delete</button>

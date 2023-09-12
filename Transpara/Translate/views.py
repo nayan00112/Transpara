@@ -125,9 +125,14 @@ def trans(request):
             }
 
             jstr = json.dumps(userJson)
-            jsondata = json.loads(jstr)
+            # jsondata = json.loads(jstr)
+            # print(jstr)
+            # print()
+            # print(jsondata)
 
-            ud = UserData(user_id=uid, user_data=jsondata,
+            # ud = UserData(user_id=uid, user_data=jsondata,
+            #               dateandtime=dateandtime)
+            ud = UserData(user_id=uid, user_data=jstr,
                           dateandtime=dateandtime)
             ud.save()
 

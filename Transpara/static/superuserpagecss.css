@@ -1,0 +1,29 @@
+@media screen and (max-width: 467px) {
+    .cont{
+        width: 100%;
+    }
+}
+body{
+    font-family: sans-serif;
+}
+@media screen and (max-width: 767px) {
+    .cont{
+        width: 100%;
+    }
+}
+
+.card{
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+.cont{
+    width: 85%;
+    margin: auto;
+}
+
+.alert{
+    color: red;
+}

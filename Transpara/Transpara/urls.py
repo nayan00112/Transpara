@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('Translate.urls')),
     path('account/', include('account.urls')),
     path('history/', include('HistoryDisp.urls')),
+    path('superuser/', include('superuser.urls')),
 ]

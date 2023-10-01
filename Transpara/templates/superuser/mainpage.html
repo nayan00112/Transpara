@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "superuserpagecss.css"%}">
+    <title>Hello Superuser</title>
+</head>
+
+<body>
+    <div class="cont">
+        <h1 class="heading">Welcome!</h1>
+        <hr>
+        <h2>
+            Feedback Comments:
+        </h2>
+
+        {% if m %}
+        <p class="alert">{{m}}</p>
+        {% endif %}
+        {% if fm %}
+        {% for m in fm %}
+        <div class="card">
+            <h3 class="topictitle">{{m.topic_title}}</h3>
+            <p>Time: {{m.currenttime}}</p>
+            <p>checked: {{m.status}}</p>
+            <p class="feedbacktext">{{m.feedbackmessage}}</p>
+            <p class="emailText">{{m.email}}
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" hidden value="checked_{{m.id}}" name="checked">
+                <input type="submit" value="checked" id="greenCheckedBut">
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" hidden value="delete_{{m.id}}" name="delete">
+                <input type="submit" value="Delete" id="deleteRedBut">
+            </form>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+
+</html>

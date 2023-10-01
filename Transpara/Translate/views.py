@@ -9,6 +9,29 @@ from datetime import datetime
 from .models import UserData
 
 # Create your views here.
+wordDic = {}
+wordMin = {}
+
+
+dictionary=PyDictionary()
+
+def sp(a, x, y, lang):
+    x = int(x)
+    y = int(y)
+    if y-x > 1:
+        global wordDic
+        global wordMin
+        mid = (x + y)/2
+        sp(a, x, mid, lang)
+        sp(a, mid, y, lang)
+    elif y-x==1:
+        english_word = a[x]
+        meaning = get_meaning(english_word, lang)
+        # print(f"{english_word}: {gujarati_meaning}")
+        wordDic[english_word] = meaning
+        wordMin[english_word + ": " + meaning] = dictionary.meaning(english_word)
+    else:
+        pass
 
 
 def get_meaning(word, lang):
@@ -75,16 +98,17 @@ def trans(request):
         # print(npra)
 
         # Now, Translatation work start here...
-        wordDic = {}
-        wordMin = {}
+        # wordDic = {}
+        # wordMin = {}
         try:
-            for i in npra:
-                english_word = i
-                meaning = get_meaning(english_word, lang)
-                # print(f"{english_word}: {gujarati_meaning}")
-                wordDic[english_word] = meaning
-                wordMin[english_word + ": " +
-                        meaning] = dictionary.meaning(english_word)
+            # for i in npra:
+            #     english_word = i
+            #     meaning = get_meaning(english_word, lang)
+            #     # print(f"{english_word}: {gujarati_meaning}")
+            #     wordDic[english_word] = meaning
+            #     wordMin[english_word + ": " +
+            #             meaning] = dictionary.meaning(english_word)
+            sp(npra, 0, len(npra), lang)
 
         except:
             messages.error(request, 'Network error')
@@ -136,6 +160,6 @@ def trans(request):
                           dateandtime=dateandtime)
             ud.save()
 
-        return render(request, "Translate/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng, "active_home":"active"})
+        return render(request, "Translate/index.html", {"praText": ptext, "wd": wordDic, "wdm": wordMin, "l1": textLeng, "active_home": "active"})
 
-    return render(request, "Translate/index.html", {"active_home":"active"})
+    return render(request, "Translate/index.html", {"active_home": "active"})

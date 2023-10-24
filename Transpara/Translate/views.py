@@ -1,115 +1,30 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-from googletrans import Translator
-from PyDictionary import PyDictionary
 from django.contrib import messages
 import json
 from datetime import datetime
 from .models import UserData
 
-# Create your views here.
-wordDic = {}
-wordMin = {}
-
-
-dictionary=PyDictionary()
-
-def sp(a, x, y, lang):
-    x = int(x)
-    y = int(y)
-    if y-x > 1:
-        global wordDic
-        global wordMin
-        mid = (x + y)/2
-        sp(a, x, mid, lang)
-        sp(a, mid, y, lang)
-    elif y-x==1:
-        english_word = a[x]
-        meaning = get_meaning(english_word, lang)
-        # print(f"{english_word}: {gujarati_meaning}")
-        wordDic[english_word] = meaning
-        wordMin[english_word + ": " + meaning] = dictionary.meaning(english_word)
-    else:
-        pass
-
-
-def get_meaning(word, lang):
-    translator = Translator()
-    translation = translator.translate(word, src='en', dest=lang)
-    return translation.text
-
+from Translate.strtodict import GetMeningDictClass
 
 def trans(request):
     if request.method == 'POST':
-        # dictionary
-        dictionary = PyDictionary()
-
-        # Filteration process:
-
         # Get data:
         ptext = request.POST.get('pra')
+        # print(ptext)
         lang = request.POST.get('lang')
 
-        pra = ptext
+        wordDic = {}
+        wordMin = {}
+        
+        wordDic.clear()
+        wordMin.clear()
 
-        p = ['.', ',', '"', "'", "_", "-", '*', '^', '&', '#', ':', ";", ')', ']', ">", "<",
-             '(', '[', "?", "!", "=", "+", "×", "÷", '/', '~', '%', '}', '{', '$', '|', '`', '¡', "'"]
-        # cw=['is ','are ',' am ',' we ', ' you ', " he ",' she ', ' it ',' were ',' was ', ' has ', ' have ', ' do ', ' did ', ' dose ', ' not ', " doesn't ", " don't ", " of ", " for ", " when ", " where ", " whose ", " who ", " what ", " whome ", " be ", " being ", " can ", " could ", " will ", " would ", " must " , ' much ', 'many ', "too. " ,"how " ," in ", 'out ', ' on ', ' top ', ' and ',' this ', ' that ',' those ',' these ', '  ', ' i ']
-        cw = ['a', 'an', 'is', 'are', 'am', 'we', 'you', "he", 'she', 'it', 'were', 'was', 'has', 'have', 'do', 'did', 'dose', 'not', "doesn't", "don't", "of", "for", "when", "where", "whose", "who",
-              "what", "whome", "be", "being", "can", "could", "will", "would", "must", 'much', 'many', "too", "how", "in", 'out', 'on', 'top', 'and', 'this', 'that', 'those', 'these', '  ', ' i ', 'to', 'the']
-
-        # Replace " I " and "I " by "".
-        pra = pra.replace(" I ", " ")
-        pra = pra.replace("I ", " ")
-        # print(pra)
-
-        # remove numbers
-        for i in range(10):
-            pra = pra.replace(str(i), "")
-
-        # remove punctuations
-        for i in p:
-            pra = pra.replace(i, "").lower()
-
-        # print(pra)
-
-        # make list
-        npra = pra.split(' ')
-
-        # remove "" (space)
-        for i in range(npra.count("")):
-            npra.remove("")
-
-        # remove repeation
-        for i in npra:
-            for j in range(npra.count(i)-1):
-                npra.remove(i)
-
-        # remove cw
-        i1 = 0
-        for i in cw:
-            i1 = npra.count(i)
-            while i1 > 0:
-                npra.remove(i)
-                i1 -= 1
-
-        # Final Output:
-        # print(npra)
-
-        # Now, Translatation work start here...
-        # wordDic = {}
-        # wordMin = {}
         try:
-            # for i in npra:
-            #     english_word = i
-            #     meaning = get_meaning(english_word, lang)
-            #     # print(f"{english_word}: {gujarati_meaning}")
-            #     wordDic[english_word] = meaning
-            #     wordMin[english_word + ": " +
-            #             meaning] = dictionary.meaning(english_word)
-            sp(npra, 0, len(npra), lang)
-
+            obj1 = GetMeningDictClass()
+            wordDic,wordMin = obj1.getMeaningDict(ptext, lang)
+            # print(wordDic,wordMin)
         except:
             messages.error(request, 'Network error')
 
@@ -138,7 +53,6 @@ def trans(request):
         if request.user.is_authenticated:
             # plane is first, convert data to the json formate and store on db.
             uid = request.user.id
-            print(uid)
             # day month year Hour Minute Second
             dateandtime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 

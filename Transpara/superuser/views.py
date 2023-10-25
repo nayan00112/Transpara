@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from Blogs.models import FeedbackData
 from django.contrib.auth.models import User, auth
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -24,16 +26,20 @@ def SuperUserInterface(request):
                     print(de)
                     FeedbackData.objects.get(id = de[7:]).delete()
                 except:
-                    # print("Not deleted de" )
+                    # messages.error(request, "Error: Not deleted")
                     pass
+
                 try:
                     ch =request.POST["checked"]
-                    print(ch)
                     a = FeedbackData.objects.get(id = ch[8:])
                     a.status = True
+                    print(request.user.username)
+                    a.checkers_superuser = request.user.username
+                    print("Dddd")
                     a.save()
+
                 except:
-                    # print("not checked ch")
+                    # messages.error(request, "Error: not checked")
                     pass
                 
             fm = FeedbackData.objects.all()

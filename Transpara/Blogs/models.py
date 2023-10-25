@@ -8,3 +8,4 @@ class FeedbackData(models.Model):
     feedbackmessage = models.TextField()
     currenttime = models.DateField(auto_now=True, auto_now_add=False)
     status = models.BooleanField()
+    checkers_superuser = models.CharField(max_length=50)

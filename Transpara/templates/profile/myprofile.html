@@ -64,7 +64,11 @@
                 </tr>
 
             </table>
-
+            {% if user.is_superuser %}
+            <div>
+                <p><a href="/superuser">Superuser</a></p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>

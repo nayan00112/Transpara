@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="{% static 'home.css'%}">
     <link rel="stylesheet" href="{% static 'cssforHistory.css'%}">
     <script src="{% static 'historypragraph.js' %}">
-        <noscript>Your browser does not support JavaScript.</noscript>
     </script>
 </head>
 
 <body onload="disp()">
+    <noscript>Your browser does not support JavaScript.</noscript>
     <div class="cont">
         <ul class="navbar">
             <li class=""><a href="/">Home</a></li>
@@ -32,7 +32,7 @@
             <h1 class="heading2">History</h1>
             {% if ud %}
             {% for d in ud %}
-            <b>Date and Time: </b>{{d.dateandtime}}
+            <b>{{forloop.counter}}. Date and Time: </b>{{d.dateandtime}}
             <br>
             <p>
                 {{d.user_data}}

@@ -126,29 +126,28 @@
                         </b>
                     </h3>
 
-                    <ol>
-
-                        {% for i, j in wdm.items%}
-                        <li>{{i}}</li>
+                    {% for i, j in wdm.items%}
+                    <table style = "border: 1px solid gray; width:100%;">
+                        <tr><th style="text-transform: capitalize; text-align: left; font-size:1.1rem; padding:5px 6px; margin:0px; background:#e6e6ff;">{{forloop.counter}}. {{i}}</th></tr>
                         <!-- <li>{{j}}</li> -->
                         {% for i, k in j.items %}
-                        <ul>
-                            <li>
-                                <b>{{i}}</b>
-                            </li>
-
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li><b>{{i}}</b></li>
                             {% for m in k %}
-                            <ul>
-                                <li>
-                                    {{m}}
-                                </li>
-                            </ul>
-                            {% endfor%}
+                                    <li>
+                                        {{m}}
+                                    </li>
+                                    {% endfor%}
+                                </ul>
+                            </td>
 
-                        </ul>
+                        </tr>
+                        <tr></tr>
                         {% endfor %}
+                    </table>
                         {%endfor%}
-                    </ol>
 
                 </div>
                 <button onclick="meaningsprint()" id="butt1">Print Meanings</button>

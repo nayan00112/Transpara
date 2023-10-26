@@ -25,8 +25,8 @@ def trans(request):
             obj1 = GetMeningDictClass()
             wordDic,wordMin = obj1.getMeaningDict(ptext, lang)
             # print(wordDic,wordMin)
-        except:
-            messages.error(request, 'Network error')
+        except Exception as e:
+            messages.error(request, '{0}'.format(e), )
 
         lenguagesList = {
             "hi": "Hindi",

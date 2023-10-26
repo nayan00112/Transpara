@@ -2,6 +2,7 @@ import numpy as np
 from threading import *
 from googletrans import Translator # https://py-googletrans.readthedocs.io/en/latest/
 from PyDictionary import PyDictionary
+import re # for remove multiple spaces from string
 
 # Translated words dictionary
 wordtrans = {}
@@ -12,7 +13,13 @@ worddesc = {}
 def text_to_word(ptext):
     
     pra = ptext
-    
+
+    # Replace new line with space.
+    pra = pra.replace("\n", " ")
+
+    # xa0 is actually non-breaking space in Latin1 (ISO 8859-1), also chr (160). 
+    pra = pra.replace("\xa0", " ")
+
     p = ['.', ',', '"', "'", "_", "-", '*', '^', '&', '#', ':', ";", ')', ']', ">", "<",
         '(', '[', "?", "!", "=", "+", "×", "÷", '/', '~', '%', '}', '{', '$', '|', '`', '¡', "'"]
     # cw=['is ','are ',' am ',' we ', ' you ', " he ",' she ', ' it ',' were ',' was ', ' has ', ' have ', ' do ', ' did ', ' dose ', ' not ', " doesn't ", " don't ", " of ", " for ", " when ", " where ", " whose ", " who ", " what ", " whome ", " be ", " being ", " can ", " could ", " will ", " would ", " must " , ' much ', 'many ', "too. " ,"how " ," in ", 'out ', ' on ', ' top ', ' and ',' this ', ' that ',' those ',' these ', '  ', ' i ']
@@ -32,6 +39,13 @@ def text_to_word(ptext):
     for i in p:
         pra = pra.replace(i, "").lower()
     
+    # remove multiple space. 
+    pra = re.sub(" +", " ", pra)
+
+    # check for string is space or not. 
+    if pra == " ":
+        raise Exception("Please Enter Valid formate input.")
+
     # make list
     npra = pra.split(' ')
     
@@ -49,6 +63,7 @@ def text_to_word(ptext):
         numpyarr = numpyarr[numpyarr != i]
     
     # numpy array to python list
+    numpyarr = np.array([i for i in numpyarr if i])
     npra = list(numpyarr)
     
     # Final Output:

@@ -34,7 +34,7 @@ pip install virtualenv
 
 - Create a virtual environment now,
 ```bash
-virtualenv -p /usr/bin/python3.9 virtualenv_name
+virtualenv virtualenv_name
 ```
 
 - Activate virtualenvironment:

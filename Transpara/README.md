@@ -6,7 +6,7 @@ Expand your vocabulary!
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+<!-- [Documentation](https://linktodocumentation) -->
 
 Greetings everyone,
 

@@ -36,3 +36,35 @@ function printWhole() {
     window.print()
     document.getElementsByTagName('body')[0].innerHTML = t
 }
+
+
+
+// function myprint() {
+//     var contentsdata = he + "" + document.getElementById('PragraphText').innerHTML + document.getElementById('DictWordsTable').innerHTML + "<br><hr><br>" + document.getElementById("fr").innerHTML
+//     var newWindow = window.open("", "Print-Window");
+//     newWindow.document.open();
+//     newWindow.document.write('<html><body>' + contentsdata + '</body></html>');
+//     newWindow.document.close();
+//     newWindow.print();
+//     newWindow.close();
+// }
+
+// function meaningsprint() {
+//     var contentsdata  =  he + "" + document.getElementById('PragraphText').innerHTML + document.getElementById('divmeaning').innerHTML + "<br><br>" + document.getElementById("fr").innerHTML
+//     var newWindow = window.open("", "Print-Window");
+//     newWindow.document.open();
+//     newWindow.document.write('<html><body>' + contentsdata + '</body></html>');
+//     newWindow.document.close();
+//     newWindow.print();
+//     newWindow.close();
+// }
+
+// function printWhole() {
+//     var contentsdata  =  he + "" + document.getElementById('PragraphText').innerHTML + document.getElementById('DictWordsTable').innerHTML + document.getElementById('divmeaning').innerHTML + "<br><br>" + document.getElementById("fr").innerHTML
+//     var newWindow = window.open("", "Print-Window");
+//     newWindow.document.open();
+//     newWindow.document.write('<html><body>' + contentsdata + '</body></html>');
+//     newWindow.document.close();
+//     newWindow.print();
+//     newWindow.close();
+// }

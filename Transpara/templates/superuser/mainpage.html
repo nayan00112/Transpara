@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "superuserpagecss.css"%}">
-    <title>Hello Superuser</title>
+    <title>Transpara | Hello Superuser</title>
     <style>
         .sbutdelet{
             display: block;
@@ -48,8 +48,10 @@
         <h1 class="heading">Welcome!</h1>
         <hr>
         <p>Welcome {{user.username}}</p>
-        <p>Click this link to logout:
+        <p>Email: {{user.email}}</p>
+        <p>Click here to logout:
         <a href="/account/logout">Logout</a></p>
+        <p>Click here for go to home: <a href="/">Home</a></p>
 
         <div style="background-color:khaki;">
             {% if messages %}

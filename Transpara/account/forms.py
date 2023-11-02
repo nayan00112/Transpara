@@ -14,5 +14,5 @@ class RegisterForm(forms.Form):
 
 class Login(forms.Form):
     uname = forms.CharField(max_length=10, required=True)
-    password1 = forms.CharField(
+    password = forms.CharField(
         max_length=10, required=True, widget=forms.PasswordInput)

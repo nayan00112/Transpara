@@ -26,29 +26,29 @@ Transpara aims to bridge linguistic barriers by offering users a platform to eff
 ## Installation
 python libraries:
 
-- Creation of virtualenvironment:
+Creation of virtualenvironment:
+- Install virtualenv:
 ```bash
-python -m venv myenv
-```
-(Replace myenv with the name you want to give your virtual environment and wait for the virtual environment to be created.)
-
-Once you have created the virtual environment, you can activate it by running the appropriate command based on your operating system:
-
-- On Linux and macOS, run:
-
-```bash
-source myenv/bin/activate
-```
-- On Windows, run:
-```bash
-myenv\Scripts\activate.bat
-```
-Install all requirement libraries for django project.
-
-```bash
-pip install -r requirement.txt
+pip install virtualenv
 ```
 
+- Create a virtual environment now,
+```bash
+virtualenv -p /usr/bin/python3.9 virtualenv_name
+```
+
+- Activate virtualenvironment:
+```bash
+cd virtualenv_name
+cd Scripts
+activate
+cd ../..
+```
+- Now, goto Transpara project root folder, and install all requirements:
+
+```bash
+pip install -r requirements.txt
+```
 
 - For database:
 ```bash
@@ -62,3 +62,4 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+Done!

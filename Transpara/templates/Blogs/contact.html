@@ -52,7 +52,7 @@
                 </p>
                 {% endfor %}
             </div>
-                {% endif %}
+            {% endif %}
             <p>We're here to assist you and answer any questions you may have. Feel free to get in touch with us through
                 the
                 provided contact information or by using the contact form below.</p>
@@ -63,52 +63,97 @@
                 <li>Email: nayanpatel5676@gmail.com</li>
             </ul>
 
+            <div style="border: 1px gray solid; padding:10px; border-radius:8px;">
+                <p><span style="font-size: 2rem;">FAQs</span></p>
 
-        </div>
-        {% if user.is_authenticated %}
-        <div>
-            {% if fm %}
-            <span style="font-size: 2rem;">Feedback Form:</span>
+                <ol>
+                    <p>
+                        <li style="font-weight:bold; margin:8px 0px;">
+                            Can I share translated vocabulary meaning?
+                        </li>
+                        Yew, you can print the vocabulary meaning and then share it.
+                    </p>
 
-            <form method="post" name="feedbackForm">
-                {{fm.as_p}}
-                {% csrf_token %}
-                <p>
-                    <input type="submit" id="butt">
-                </p>
-            </form>
-            {% endif %}
-            <div>
-                <p>We appreciate your feedback and are committed to providing you with the best service. If you have any
-                    suggestions or comments, please don't hesitate to reach out.</p>
-
-                <p>Thank you for considering us. We look forward to hearing from you.</p>
+                    <p>
+                        <li style="font-weight:bold; margin:8px 0px;">
+                            Can I store the history for future purpose?
+                        </li>
+                        Yes, logged in user's translation history store automatically. User can access any time.
+                    </p>
+                    <p>
+                        <li style="font-weight:bold; margin:8px 0px;">
+                            Can I delete the history?
+                        </li>
+                        Yes, user can delete the history.
+                    </p>
+                    <p>
+                        <li style="font-weight:bold; margin:8px 0px;">
+                            Is login is required?
+                        </li>
+                        Logged in user have facility to store data and delete. If user not need to store vocabulary
+                        history,
+                        then it
+                        is no need to login.
+                    </p>
+                    <p>
+                        <li style="font-weight:bold; margin:8px 0px;">
+                            Can I change my email address?
+                        </li>
+                        Yes, user can edit his/her profile after registration.
+                    </p>
+                </ol>
             </div>
         </div>
-        {% else %}
-        <div>
-            <p style="color:red; font-size:1.2rem;">
-                login required.
-            </p>
-            <p>
-                <a href="/account/login">Click here</a> for log in.
-            </p>
-            <p>
-                <a href="/account/register">Click here</a> for registeration.
-            </p>
+        <br>
+        <div style="border: 1px gray solid; padding:10px; border-radius:8px;">
+            {% if user.is_authenticated %}
+            <div>
+                {% if fm %}
+                <span style="font-size: 2rem;">Feedback Form:</span>
+
+                <form method="post" name="feedbackForm">
+                    {{fm.as_p}}
+                    {% csrf_token %}
+                    <p>
+                        <input type="submit" id="butt">
+                    </p>
+                </form>
+                {% endif %}
+                <div>
+                    <p>We appreciate your feedback and are committed to providing you with the best service. If you have
+                        any
+                        suggestions or comments, please don't hesitate to reach out.</p>
+
+                    <p>Thank you for considering us. We look forward to hearing from you.</p>
+                </div>
+            </div>
+            {% else %}
+            <div>
+                <p style="color:red; font-size:1.2rem; font-family:Roboto;">
+                    Please log in to access the feedback form.
+                </p>
+                <p>
+                    <a href="/account/login">Click here</a> for log in.
+                </p>
+                <p>
+                    <a href="/account/register">Click here</a> for registeration.
+                </p>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-        
-        
-        
+
+
+
+
+
         <p><span style="font-size: 2rem;">Connect with Us:</span></p>
 
         <p>Stay updated with our latest news and updates by following us on social media. You can find us on [Social
-        Media
-        Links].</p>
+            Media
+            Links].</p>
 
     </div>
-    
+
 </body>
 
 </html>
